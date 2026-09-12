@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapier Setup - TradeDeck Scraper</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 16px;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            font-size: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .step {
+            margin-bottom: 24px;
+            padding: 16px;
+            background: #f9fafb;
+            border-left: 4px solid #4f46e5;
+            border-radius: 6px;
+        }
+        .step-number {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        ol, ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        code, pre {
+            background: #eef2ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #4f46e5;
+        }
+        pre {
+            padding: 12px;
+            overflow-x: auto;
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+        .copyable {
+            background: #fff9e6;
+            border: 1px solid #fcd34d;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+        }
+        .success {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+        .button {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 12px 0;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+        .button:hover {
+            background: #4338ca;
+        }
+        .toc {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+        .toc a {
+            color: #4f46e5;
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            margin-top: 40px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔨 Zapier Setup for TradeDeck</h1>
+        <p class="subtitle">Phone-friendly step-by-step guide. 15 minutes. No code.</p>
+
+        <div class="toc">
+            <strong>Quick Links:</strong>
+            <a href="#step1">1. Create Account</a>
+            <a href="#step2">2. New Zap</a>
+            <a href="#step3">3. Schedule Trigger</a>
+            <a href="#step4">4. Get Targets</a>
+            <a href="#step5">5. Loop</a>
+            <a href="#step6">6. Extract Jobs</a>
+            <a href="#step7">7. Write to Supabase</a>
+            <a href="#step8">8. Publish</a>
+        </div>
+
+        <h2 id="step1">Step 1: Create Zapier Account</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">1</span> Sign Up</div>
+            <ol>
+                <li>Go to <strong>zapier.com</strong> on your phone</li>
+                <li>Tap <strong>Sign Up</strong></li>
+                <li>Enter email + password</li>
+                <li>Verify email (check inbox)</li>
+            </ol>
+            <div class="success">✓ Done — logged in</div>
+        </div>
+
+        <h2 id="step2">Step 2: Create New Zap</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">2</span> New Zap</div>
+            <ol>
+                <li>Tap <strong>Create</strong> (or <strong>+</strong> button)</li>
+                <li>Tap <strong>Create a Zap</strong></li>
+                <li>Name it: <code>TradeDeck Daily Scraper</code></li>
+            </ol>
+        </div>
+
+        <h2 id="step3">Step 3: Add Trigger (When to Run)</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">3</span> Schedule Trigger</div>
+            <ol>
+                <li>Search for: <strong>Schedule by Zapier</strong></li>
+                <li>Select <strong>Schedule by Zapier</strong></li>
+                <li>Set frequency: <strong>Daily</strong></li>
+                <li>Set time: <strong>6:00 AM</strong></li>
+                <li>Tap <strong>Continue</strong></li>
+            </ol>
+            <div class="success">✓ Now it will run every day at 6 AM</div>
+        </div>
+
+        <h2 id="step4">Step 4: Add Action 1 (Get Job Targets)</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">4</span> Fetch Targets</div>
+            <ol>
+                <li>Tap <strong>+</strong> to add action</li>
+                <li>Search: <strong>Webhooks by Zapier</strong></li>
+                <li>Select <strong>GET Request</strong></li>
+                <li>Fill URL:</li>
+            </ol>
+            <div class="copyable">https://jlaajejpqjldpbinktiln.supabase.co/rest/v1/scrape_targets?status=eq.active&select=url</div>
+            <ol start="5">
+                <li>Scroll down → <strong>Headers</strong></li>
+                <li>Add Header:
+                    <ul>
+                        <li><strong>Key:</strong> <code>Authorization</code></li>
+                        <li><strong>Value:</strong> <code>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsYWFqZWpwcWpsZHBiaW5rdGxuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjIwODcxOSwiZXhwIjoyMTAxNzg0NzE5fQ.AZdBdgKKEQBYLDI24k5W-ELjSsYzDTuTZVnq1huSg6I</code></li>
+                    </ul>
+                </li>
+                <li>Tap <strong>Test</strong> (should return list of URLs)</li>
+                <li>Tap <strong>Continue</strong></li>
+            </ol>
+            <div class="success">✓ Step fetches all active job targets</div>
+        </div>
+
+        <h2 id="step5">Step 5: Add Action 2 (Loop Through Targets)</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">5</span> Looping</div>
+            <ol>
+                <li>Tap <strong>+</strong> to add action</li>
+                <li>Search: <strong>Looping by Zapier</strong></li>
+                <li>Select <strong>Looping by Zapier</strong></li>
+                <li>For "Input": Tap input field → Select <strong>data</strong> from previous step</li>
+                <li>Tap <strong>Continue</strong></li>
+            </ol>
+            <div class="success">✓ Now each target will be processed one by one</div>
+        </div>
+
+        <h2 id="step6">Step 6: Add Action 3 (Extract Jobs)</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">6</span> Extract Jobs</div>
+            <ol>
+                <li>Tap <strong>+</strong> to add action</li>
+                <li>Search: <strong>Code by Zapier</strong></li>
+                <li>Select <strong>Python</strong></li>
+                <li>Delete default code, paste this:</li>
+            </ol>
+            <pre>import requests
+import hashlib
+
+url = input_data.get('url')
+if not url:
+    return {'error': 'No URL'}
+
+sgai_key = "sgai-c3f2f2ef-47bb-4d72-b188-0729995d11a6"
+
+prompt = """Extract every construction job listing visible.
+Only Utah jobs. Only trades: roofing, framing, concrete, electrical, 
+plumbing, hvac, excavation, landscaping, painting, flooring, general_labor, project_management.
+For each job return: title, company, location, county, pay, job_type, description, posted_date, trade_category."""
+
+payload = {
+    "url": url,
+    "prompt": prompt,
+    "schema": {
+        "jobs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "title": {"type": ["string", "null"]},
+                    "company": {"type": ["string", "null"]},
+                    "location": {"type": ["string", "null"]},
+                    "county": {"type": ["string", "null"]},
+                    "pay": {"type": ["string", "null"]},
+                    "job_type": {"type": ["string", "null"]},
+                    "description": {"type": ["string", "null"]},
+                    "posted_date": {"type": ["string", "null"]},
+                    "trade_category": {"type": ["string", "null"]}
+                }
+            }
+        }
+    }
+}
+
+headers = {
+    "Authorization": f"Bearer {sgai_key}",
+    "Content-Type": "application/json"
+}
+
+try:
+    response = requests.post(
+        "https://api.scrapegraphai.com/v1/extract",
+        json=payload,
+        headers=headers,
+        timeout=30
+    )
+    data = response.json()
+    jobs = data.get('jobs', [])
+    
+    return {
+        'jobs': jobs,
+        'url': url,
+        'count': len(jobs),
+        'success': True
+    }
+except Exception as e:
+    return {
+        'error': str(e),
+        'url': url,
+        'success': False
+    }</pre>
+            <ol start="5">
+                <li>Tap <strong>Continue</strong> (don't test yet)</li>
+            </ol>
+            <div class="success">✓ Extracts jobs from the target</div>
+        </div>
+
+        <h2 id="step7">Step 7: Add Action 4 (Write to Supabase)</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">7</span> Write Jobs</div>
+            <ol>
+                <li>Tap <strong>+</strong> to add action</li>
+                <li>Search: <strong>Webhooks by Zapier</strong></li>
+                <li>Select <strong>POST Request</strong></li>
+                <li>Fill URL:</li>
+            </ol>
+            <div class="copyable">https://jlaajejpqjldpbinktiln.supabase.co/rest/v1/jobs</div>
+            <ol start="5">
+                <li>Scroll down → <strong>Headers</strong></li>
+                <li>Add Header 1:
+                    <ul>
+                        <li><strong>Key:</strong> <code>Authorization</code></li>
+                        <li><strong>Value:</strong> <code>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsYWFqZWpwcWpsZHBiaW5rdGxuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjIwODcxOSwiZXhwIjoyMTAxNzg0NzE5fQ.AZdBdgKKEQBYLDI24k5W-ELjSsYzDTuTZVnq1huSg6I</code></li>
+                    </ul>
+                </li>
+                <li>Add Header 2:
+                    <ul>
+                        <li><strong>Key:</strong> <code>Content-Type</code></li>
+                        <li><strong>Value:</strong> <code>application/json</code></li>
+                    </ul>
+                </li>
+                <li>Scroll down → <strong>Data</strong></li>
+                <li>Paste this:</li>
+            </ol>
+            <pre>{
+  "title": "Test Job",
+  "company": "Test Company",
+  "location": "Test, UT",
+  "county": "Utah",
+  "pay": null,
+  "job_type": "full-time",
+  "description": "Test job from Zapier",
+  "posted_date": null,
+  "trade_category": "construction",
+  "source": "external",
+  "ksl_job_id": "test-zapier",
+  "external_url": "https://test.com",
+  "posted_by": null
+}</pre>
+            <ol start="9">
+                <li>Tap <strong>Continue</strong> (don't test yet)</li>
+            </ol>
+            <div class="success">✓ Writes jobs to Supabase</div>
+        </div>
+
+        <h2 id="step8">Step 8: Publish & Activate</h2>
+        <div class="step">
+            <div class="step-title"><span class="step-number">8</span> Turn On</div>
+            <ol>
+                <li>Review your zap:
+                    <ul>
+                        <li><strong>Trigger:</strong> Schedule (Daily 6 AM) ✓</li>
+                        <li><strong>Action 1:</strong> GET targets ✓</li>
+                        <li><strong>Action 2:</strong> Loop ✓</li>
+                        <li><strong>Action 3:</strong> Extract with Python ✓</li>
+                        <li><strong>Action 4:</strong> POST to Supabase ✓</li>
+                    </ul>
+                </li>
+                <li>Tap <strong>Publish</strong> (or <strong>Turn on Zap</strong>)</li>
+                <li>You should see: <strong>"Your Zap is on!"</strong></li>
+            </ol>
+            <div class="success">✓ DONE!</div>
+        </div>
+
+        <h2>It's Running</h2>
+        <p>Every day at 6 AM:</p>
+        <ol>
+            <li>Gets all active targets from Supabase</li>
+            <li>Extracts construction jobs from each</li>
+            <li>Writes new jobs to Supabase</li>
+            <li>Skips duplicates automatically</li>
+        </ol>
+
+        <h2>Monitor on Phone</h2>
+        <ol>
+            <li>Open <strong>Zapier app</strong> (or browser)</li>
+            <li>Tap <strong>TradeDeck Daily Scraper</strong></li>
+            <li>See recent runs (success/fail)</li>
+            <li>View logs</li>
+        </ol>
+
+        <h2>Troubleshooting</h2>
+        <div class="warning">
+            <strong>Test failed:</strong> Check internet connection. Try again — may be rate limit.
+        </div>
+        <div class="warning">
+            <strong>No jobs extracted:</strong> Site may require JavaScript. Check if URLs are correct.
+        </div>
+        <div class="warning">
+            <strong>Authorization failed:</strong> Check Bearer token has no typos. Make sure entire token is copied.
+        </div>
+        <div class="warning">
+            <strong>Zap turned off:</strong> Zapier may pause if errors persist. Turn it back on manually.
+        </div>
+
+        <h2>What's Next</h2>
+        <ol>
+            <li><strong>Wait for 6 AM tomorrow</strong> — first run happens automatically</li>
+            <li><strong>Check Supabase</strong> to see jobs extracted:
+                <ul>
+                    <li>Go to supabase.co</li>
+                    <li>Log in</li>
+                    <li>View <code>jobs</code> table</li>
+                    <li>Should see new construction jobs</li>
+                </ul>
+            </li>
+            <li><strong>View on phone dashboard</strong> (optional):
+                <ul>
+                    <li>Deploy <code>dashboard.html</code> to Netlify</li>
+                    <li>Open on phone to see results live</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>That's It</h2>
+        <p>Everything is set up. It runs every day automatically.</p>
+        <p><strong>No more steps needed.</strong></p>
+        <p>Check back tomorrow morning to see jobs in Supabase.</p>
+
+        <footer>
+            TradeDeck Job Scraper | Zapier Setup Guide | Generated 2026
+        </footer>
+    </div>
+</body>
+</html>
